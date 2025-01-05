@@ -15,8 +15,6 @@ async function truncate() {
     .map((name) => `"public"."${name}"`)
     .join(', ')
 
-  console.log(`Truncating tables: ${tables}`)
-
   await prisma.$executeRawUnsafe(`TRUNCATE TABLE ${tables} CASCADE;`)
 }
 
@@ -27,9 +25,10 @@ async function main() {
   const signUpEmailPromises = sampleData.users.map((user) => {
     return auth.api.signUpEmail({
       body: {
-        name: user.name,
+        name: user.name ? user.name : 'NO_NAME',
         email: user.email,
         password: user.password,
+        role: user.role ? user.role : 'USER',
       },
     })
   })

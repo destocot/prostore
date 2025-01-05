@@ -1,23 +1,16 @@
-import { hashSync } from '@node-rs/argon2'
-
-const opts = {
-  memoryCost: 19456,
-  timeCost: 2,
-  outputLen: 32,
-  parallelism: 1,
-}
-
 export const sampleData = {
   users: [
     {
       name: 'John',
       email: 'admin@example.com',
-      password: hashSync('123456', opts),
+      password: '123456',
+      role: 'ADMIN',
     },
     {
       name: 'Jane',
       email: 'user@example.com',
-      password: hashSync('123456', opts),
+      password: '123456',
+      role: 'USER',
     },
   ],
   products: [

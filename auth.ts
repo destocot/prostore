@@ -1,6 +1,7 @@
 import { hash, verify } from '@node-rs/argon2'
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
+import { nextCookies } from 'better-auth/next-js'
 import { prisma } from './db/prisma'
 
 const opts = {
@@ -53,4 +54,5 @@ export const auth = betterAuth({
       },
     },
   },
+  plugins: [nextCookies()],
 })
